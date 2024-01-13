@@ -1,4 +1,5 @@
 const fs = require("fs");
+const http = require("http");
 
 // Synchronous
 
@@ -14,7 +15,7 @@ console.log("File written!"); */
 
 // Asynchronous
 
-fs.readFile("./1-node-farm/starter/txt/start.txt", "utf-8", (err, data1) => {
+/* fs.readFile("./1-node-farm/starter/txt/start.txt", "utf-8", (err, data1) => {
   if (err) console.log("Error!");
   fs.readFile(
     `./1-node-farm/starter/txt/${data1}.txt`,
@@ -39,4 +40,15 @@ fs.readFile("./1-node-farm/starter/txt/start.txt", "utf-8", (err, data1) => {
     }
   );
 });
-console.log("Will read the file!");
+console.log("Will read the file!"); */
+
+//SERVER
+
+const server = http.createServer((req, res) => {
+  console.log(req);
+  res.end("Hello from the server!");
+});
+
+server.listen(8000, "127.0.0.1", () => {
+  console.log("Listening to requests on port 8000!");
+});
