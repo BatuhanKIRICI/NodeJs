@@ -16,6 +16,23 @@ const server = http.createServer((request, response) => {
 
       response.end();
     });
+  } else if (request.url === "/create" && request.method === "POST") {
+    fs.appendFile("products.txt", "trial\n", (err) => {
+      if (err) {
+        console.log(err);
+      } else {
+        response.statusCode = 302;
+        response.setHeader("Location", "/");
+        response.end();
+      }
+    });
+  } else if (request.url === "/create") {
+    fs.readFile("create.html", (error, html) => {
+      response.writeHead(200, { "Content-Type": "text/html" });
+      response.write(html);
+
+      response.end();
+    });
   } else {
     fs.readFile("404.html", (error, html) => {
       response.writeHead(404, { "Content-Type": "text/html" });
