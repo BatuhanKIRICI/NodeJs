@@ -1,19 +1,19 @@
 {
-  "dependencies": {
-    "date-fns": "^3.2.0",
-    "uuid": "^9.0.1"
-  },
-  "name": "nodejs",
+  "name": "05tut",
   "version": "1.0.0",
-  "main": "index.js",
+  "description": "Node.js Web Server tutorial",
+  "main": "server.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js"
+    "start": "node server",
+    "dev": "nodemon server"
   },
-  "author": "",
+  "author": "Dave Gray",
   "license": "ISC",
-  "description": "",
+  "dependencies": {
+    "date-fns": "^2.23.0",
+    "uuid": "^8.3.2"
+  },
   "devDependencies": {
-    "nodemon": "^3.0.3"
+    "nodemon": "^2.0.22"
   }
 }
