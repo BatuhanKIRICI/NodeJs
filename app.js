@@ -17,14 +17,25 @@ const server = http.createServer((request, response) => {
       response.end();
     });
   } else if (request.url === "/create" && request.method === "POST") {
-    fs.appendFile("products.txt", "trial\n", (err) => {
-      if (err) {
-        console.log(err);
-      } else {
-        response.statusCode = 302;
-        response.setHeader("Location", "/");
-        response.end();
-      }
+    const data = [];
+
+    request.on("data", (chunk) => {
+      data.push(chunk);
+    });
+
+    request.on("end", () => {
+      const result = Buffer.concat(data).toString();
+      const parsedData = result.split("=")[1];
+      console.log(parsedData);
+      fs.appendFile("products.txt", `${parsedData}\n`, (err) => {
+        if (err) {
+          console.log(err);
+        } else {
+          response.statusCode = 302;
+          response.setHeader("Location", "/");
+          response.end();
+        }
+      });
     });
   } else if (request.url === "/create") {
     fs.readFile("create.html", (error, html) => {
